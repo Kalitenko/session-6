@@ -1,8 +1,5 @@
 package ru.sbt.jschool.session6;
 
-/**
- * Created by 1 on 27.04.2018.
- */
 public enum Response {
 
     OK{

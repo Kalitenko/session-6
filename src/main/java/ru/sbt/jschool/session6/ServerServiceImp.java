@@ -1,5 +1,6 @@
 package ru.sbt.jschool.session6;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ServerServiceImp implements ServerService {
@@ -9,7 +10,7 @@ public class ServerServiceImp implements ServerService {
 
 
     @Override
-    public void createUser(String name, int age, double salary) {
+    public void createUser(String name, int age, double salary) throws IOException {
         User user = new User(name, age, salary);
         database.writeFile(user);
     }
@@ -20,12 +21,12 @@ public class ServerServiceImp implements ServerService {
     }
 
     @Override
-    public List<User> list() {
+    public List<User> list() throws IOException, ClassNotFoundException {
         return database.readAllFiles();
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(int id) throws IOException, ClassNotFoundException {
         return database.readFile(id);
     }
 }

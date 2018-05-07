@@ -1,19 +1,13 @@
 package ru.sbt.jschool.session6;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-/**
- * Created by 1 on 22.04.2018.
- */
 public class Server {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         String propertyPath;
         String defaultPropertyPath = "property";
@@ -38,7 +32,7 @@ public class Server {
                     String str = scanner.nextLine();
                     System.out.println(str);
                     responseString = responseService.response(str);
-                    System.out.println(responseString );
+                    System.out.println(responseString);
                     outputStream.write(responseString.getBytes());
                     outputStream.flush();
 
