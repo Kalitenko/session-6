@@ -1,11 +1,7 @@
 package ru.sbt.jschool.session6;
 
-import java.io.FileWriter;
 import java.util.List;
 
-/**
- * Created by 1 on 22.04.2018.
- */
 public class ServerServiceImp implements ServerService {
 
     private String databasePath = "src/main/database";

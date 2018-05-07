@@ -1,18 +1,16 @@
 package ru.sbt.jschool.session6;
 
+import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by 1 on 22.04.2018.
- */
 public interface ServerService {
 
-    void createUser(String name, int age, double salary);
+    void createUser(String name, int age, double salary) throws IOException;
 
     boolean deleteUser(int id);
 
-    List<User> list();
+    List<User> list() throws IOException, ClassNotFoundException;
 
-    User getUser(int id);
+    User getUser(int id) throws IOException, ClassNotFoundException;
 
 }

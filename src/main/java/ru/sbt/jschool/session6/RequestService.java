@@ -1,16 +1,9 @@
 package ru.sbt.jschool.session6;
 
-/**
- * Created by 1 on 27.04.2018.
- */
-public class RequestService {
+class RequestService {
 
     boolean isRequest(String string){
-
-        if(string.startsWith("GET"))
-            return true;
-
-        return false;
+        return string.startsWith("GET");
     }
 
     String requestString(String string){
@@ -18,36 +11,31 @@ public class RequestService {
     }
 
     boolean isCreateRequest(String string){
-        if(string.startsWith("user/create?"))
-            return true;
-        return false;
+        return string.startsWith("user/create?");
     }
     boolean isDeleteRequest(String string){
-        if(string.startsWith("user/delete/"))
-            return true;
-        return false;
+        return string.startsWith("user/delete/");
     }
     boolean isListRequest(String string){
-        if(string.startsWith("user/list"))
-            return true;
-        return false;
+        return string.startsWith("user/list");
     }
     boolean isIdRequest(String string){
-        if(string.startsWith("user/$"))
-            return true;
-        return false;
+        return string.startsWith("user/$");
     }
     String[] createRequest(String string){
         String substring = string.substring("/user/create?".length() - 1, string.length());
         String[] strings = substring.split("&");
+        if(!(strings.length == 3))
+            return null;
         String[] result = new String[3];
-        for (int i = 0; i < strings.length; i++) {
-            if(strings[i].startsWith("name="))
-                result[0] = strings[i].substring("name=".length(), strings[i].length());
-            else if(strings[i].startsWith("age="))
-                result[1] = strings[i].substring("age=".length(), strings[i].length());
-            else if(strings[i].startsWith("salary="))
-                result[2] = strings[i].substring("salary=".length(), strings[i].length());
+        for (String str: strings) {
+            if (str.startsWith("name="))
+                result[0] = str.substring("name=".length(), str.length());
+            else if (str.startsWith("age="))
+                result[1] = str.substring("age=".length(), str.length());
+            else if (str.startsWith("salary="))
+                result[2] = str.substring("salary=".length(), str.length());
+            else return null;
         }
         for(String str : result)
             if(str.equals(""))
@@ -59,7 +47,7 @@ public class RequestService {
     Integer deleteRequest(String string){
         String substring = string.substring("/user/delete/".length()-1, string.length());
 
-        if(substring == "")
+        if(substring.equals(""))
             return null;
         else
             return Integer.valueOf(substring);
@@ -69,7 +57,7 @@ public class RequestService {
     Integer IdRequest(String string){
         String substring = string.substring("/user/$".length() - 1, string.length());
 
-        if(substring == "")
+        if(substring.equals(""))
             return null;
         else
             return Integer.valueOf(substring);
